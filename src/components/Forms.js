@@ -65,14 +65,12 @@ const FormikApp = withFormik({
       .required()
   }),
   handleSubmit(values, { setStatus, resetForm }) {
-    console.log(values);
     axios
       .post(
         "https://webpt7-weightliftingjournal.herokuapp.com/api/auth/register",
         values
       )
       .then(res => {
-        console.log("success", res);
         setStatus(res.data);
         resetForm();
       })

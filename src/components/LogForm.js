@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
-import Header from './Header';
 
 
 const LabelStyle = styled.label`
@@ -37,20 +35,14 @@ const ParaError = styled.p`
   color: red;
 `
 
-// export default function LogForm({ addNewExercise }) {
 const LogForm = ({ addNewExercise, values, errors, touched, status }) => {
-  console.log("values", values);
-  console.log("errors", errors);
-  console.log("touched", touched);
 
   useEffect(() => {
-    console.log("this is status:", status);
     status && addNewExercise(status);
-    }, [status]);
+    }, [status, addNewExercise]);
 
   return (
     <div>
-      <Header /> 
       <Form className="form-styled">
         <h3>Add New Exercise</h3>
 
@@ -209,12 +201,10 @@ const FormikLogForm = withFormik({
 
   handleSubmit(values, { setStatus, resetForm }) {
     // event.preventDefault();
-    console.log("this is value", values)
     axios
       .post("https://reqres.in/api/users", values)
       // .post("https://webpt7-weightliftingjournal.herokuapp.com/api/workouts/newworkout", values, {withCredentials: true})
       .then(res => {
-        console.log("this is the response: ", res)
         // sends a status update through props in UserForm with value as response.data content
         // this comes from the formikBag
         setStatus(res.data);

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import CharacterCard from "./CharacterCard";
 import styled from "styled-components";
 import LogCard from "./LogCard";
 import { withFormik, Form, Field } from "formik";
@@ -28,29 +27,20 @@ const ErrorPMessage = styled.p`
 `
 
 const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
-  console.log("this is values in Searchform", values);
 
-  // const [searchDate, setSearchDate] = useState("");
-
-  // const [searchResults, setSearchResults] = useState(exerciseList);
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    // console.log("this is values in useEffect", values);
-    // console.log("this is status", status);
-    // console.log("this is exerciseList", exerciseList);
     const results = exerciseList.filter(exercise => {
       return exercise.date === status;
     });
 
     setSearchResults(results);
-    console.log("this is results", results);
 
-  }, [status]);
+  }, [status, exerciseList]);
 
   const returnResults = () => {
     if (touched.date && searchResults.length === 0) {
-      console.log("first if is running");
       return (
         <div>
           <ErrorPMessage>You don't have logs for that date</ErrorPMessage>
@@ -60,7 +50,6 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
     }
 
     else if (searchResults.length === 0) {
-      console.log("second if is running");
       return (
         <div>
           <LastFiveLogs exerciseList={exerciseList} />
@@ -69,7 +58,6 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
     }
 
     else if (searchResults.length > 0) {
-      console.log("third if is running");
       return (
         searchResults.map(exercise => (
           <LogCard exercise={exercise} />
@@ -77,21 +65,6 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
       )
     }
   }
-
-  // const handleChange = event => {
-  //   setSearchDate(event.target.value);
-  // };
-
-  // const submitForm = event => {
-  //   event.preventDefault();
-
-  //   const results = exerciseList.filter(exercise => {
-  //     return exercise.date === searchDate;
-  //   });
-
-  //   setSearchResults(results);
-  //   console.log("this is results", searchResults);
-  // };
 
 
   return (

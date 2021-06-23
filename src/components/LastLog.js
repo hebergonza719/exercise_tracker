@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
-import LogCard from './LogCard';
-import Header from './Header';
-import LastFiveLogs from './LastFiveLogs';
+// import LogCard from './LogCard';
+// import LastFiveLogs from './LastFiveLogs';
 
 
 const BtnStyle = styled.button`
@@ -19,14 +18,9 @@ const BtnStyle = styled.button`
 
 export default function LastLog({ exerciseList }) {
 
-  console.log("this is exerciseList in LastLog", exerciseList);
-
-  // const reverseList = exerciseList.reverse();
-
   if (exerciseList.length === 0) {
     return (
       <div>
-        <Header /> 
         <h3>You have no previous logs</h3>
         <Link to="/new-log">
           <BtnStyle>Create a new log</BtnStyle>
@@ -38,7 +32,6 @@ export default function LastLog({ exerciseList }) {
   else {
     return (
       <div>
-        <Header /> 
         <SearchForm exerciseList={exerciseList} />
         
         <Link to="/new-log">

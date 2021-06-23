@@ -26,7 +26,7 @@ export default function LogCard ({ exercise }) {
   return (
     <CardContainer>
       <div className="img-container">
-        <img className="card-img" src={exerciselog} />
+        <img className="card-img" src={exerciselog} alt="exercise equipment"/>
       </div>
       <h3 className="h3-date">Date: {exercise.date}</h3>
       <H3Styled>Exercise Type: {exercise.exercise}</H3Styled>
