@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
-// import LogCard from './LogCard';
-// import LastFiveLogs from './LastFiveLogs';
 
 
 const BtnStyle = styled.button`

@@ -66,7 +66,6 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
     }
   }
 
-
   return (
     <section className="search-form">
       {/* <form> */}
