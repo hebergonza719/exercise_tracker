@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import LogForm from "./components/LogForm";
 import { Route, BrowserRouter } from "react-router-dom";
 import LastLog from "./components/LastLog";
+import Register from "./components/Register";
+import Login from "./components/Login";
 import "./fonts.css";
 import "./App.css";
 
@@ -24,6 +26,20 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Route
+          exact
+          path="/register"
+          render={routeProps => {
+            return <Register {...routeProps} />;
+          }}
+        />
+        <Route
+          exact
+          path="/"
+          render={routeProps => {
+            return <Login {...routeProps} />;
+          }}
+        />
         <Route
           exact
           path="/lastlog"

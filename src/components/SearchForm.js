@@ -110,7 +110,7 @@ const FormikSearchForm  = withFormik({
   }),
 
   handleSubmit(values, { setStatus }) {
-    setStatus(values.date.toString());
+    setStatus(values);
     // resetForm();
   }
 
