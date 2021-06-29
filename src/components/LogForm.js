@@ -202,7 +202,7 @@ const FormikLogForm = withFormik({
   handleSubmit(values, { setStatus, resetForm }) {
     // event.preventDefault();
     axios
-      .post("https://reqres.in/api/users", values)
+      .post("http://localhost:4000/api/logs", values)
       // .post("https://webpt7-weightliftingjournal.herokuapp.com/api/workouts/newworkout", values, {withCredentials: true})
       .then(res => {
         // sends a status update through props in UserForm with value as response.data content

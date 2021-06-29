@@ -85,14 +85,10 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
           />
         </label>
 
-        {/* <BtnStyle type="submit" onClick={submitForm}>Search</BtnStyle> */}
         <BtnStyle type="submit">Search</BtnStyle>
         
       {/* </form> */}
       </Form>
-      {/* {searchResults.map(exercise => (
-        <LogCard exercise={exercise} />
-      ))} */}
       {returnResults()}
     </section>
   );

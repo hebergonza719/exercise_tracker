@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const authenticate = require('../auth/authenticate-middleware');
 const authRouter = require('../auth/auth-router');
+const logsRouter = require('../logs/logs-router');
 
 const server = express();
 
@@ -19,6 +20,7 @@ mongoose.connect(
   }
 );
 
+// Middleware
 server.use(helmet());
 server.use(cors({
   origin: "http://localhost:3000",
@@ -26,7 +28,10 @@ server.use(cors({
 }))
 server.use(express.json());
 
+// Routers
 server.use('/api/auth', authRouter);
+server.use('/api/logs', logsRouter);
+
 
 server.get('/', (req, res, next) => {
   res.status(200).json({ api: "running "});

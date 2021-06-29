@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
 
+import { connect } from "react-redux";
 
 const BtnStyle = styled.button`
   background-color: #18181E;
@@ -14,9 +15,9 @@ const BtnStyle = styled.button`
   margin-bottom: 5%;
 `
 
-export default function LastLog({ exerciseList }) {
-
-  if (exerciseList.length === 0) {
+// function LastLog({ exerciseList, logs }) {
+function LastLog({ logs }) {
+  if (logs.length === 0) {
     return (
       <div>
         <h3>You have no previous logs</h3>
@@ -30,7 +31,7 @@ export default function LastLog({ exerciseList }) {
   else {
     return (
       <div>
-        <SearchForm exerciseList={exerciseList} />
+        <SearchForm exerciseList={logs} />
         
         <Link to="/new-log">
           <BtnStyle>Create a new log</BtnStyle>
@@ -40,3 +41,13 @@ export default function LastLog({ exerciseList }) {
     );
   };
 };
+
+const mapStateToProps = state => {
+  return {
+    logs: state.logs
+  };
+};
+
+export default connect (
+  mapStateToProps
+)(LastLog);

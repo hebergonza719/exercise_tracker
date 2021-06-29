@@ -14,7 +14,7 @@ export default function LastFiveLogs({ exerciseList }) {
     <div>
       <TitleStyled>Your last five logs:</TitleStyled>
       {exerciseList.slice(-5).map((exercise) =>
-        <LogCard exercise = {exercise} /> 
+        <LogCard key={exercise._id} exercise = {exercise} /> 
       )}
     </div>
   )

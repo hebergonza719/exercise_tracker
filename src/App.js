@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogForm from "./components/LogForm";
 import { Route, BrowserRouter } from "react-router-dom";
 import LastLog from "./components/LastLog";
@@ -7,7 +7,11 @@ import Login from "./components/Login";
 import "./fonts.css";
 import "./App.css";
 
-function App() {
+// Redux
+import { connect } from "react-redux";
+import { getData } from "./actions";
+
+function App(props) {
   const [exerciseList, setExerciseList] = useState([]);
   const addNewExercise = exercise => {
     const newExercise = {
@@ -22,6 +26,12 @@ function App() {
     const newExerciseList = [...exerciseList, newExercise];
     setExerciseList(newExerciseList);
   };
+
+  const { getData } = props;
+
+  useEffect(() => {
+    getData();
+  }, [getData])
 
   return (
     <BrowserRouter>
@@ -44,7 +54,8 @@ function App() {
           exact
           path="/lastlog"
           render={routeProps => {
-            return <LastLog {...routeProps} exerciseList={exerciseList} />;
+            // return <LastLog {...routeProps} exerciseList={exerciseList} />;
+            return <LastLog {...routeProps}/>;
           }}
         />
         <Route
@@ -56,5 +67,16 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
-export default App;
+};
+
+const mapStateToProps = state => {
+  return {
+    logs: state.logs
+  };
+};
+
+// export default App;
+export default connect (
+  mapStateToProps,
+  { getData }
+)(App);
