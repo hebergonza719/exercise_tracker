@@ -10,7 +10,7 @@ const logsRouter = require('../logs/logs-router');
 const server = express();
 
 mongoose.connect(
-  "mongodb+srv://hebergonza:test123@cluster0.i7fe1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  process.env.MONGODB_CONNECTION_STRING,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -30,7 +30,7 @@ server.use(express.json());
 
 // Routers
 server.use('/api/auth', authRouter);
-server.use('/api/logs', logsRouter);
+server.use('/api/logs', authenticate, logsRouter);
 
 
 server.get('/', (req, res, next) => {

@@ -23,18 +23,20 @@ router.post('/', async (req, res, next) => {
   }
 );
 
-router.get('/', async (req, res, next) => {
+router.get('/:user_id', async (req, res, next) => {
+  const { user_id } = req.params;
   try {
-    const logs = await Log.find({});
+    const logs = await Log.find({"user_id": `${user_id}`});
     res.send(logs);
   } catch (error) {
     res.status(500).send({ get_error: 'Error while getting list of logs.' })
   }
 });
 
-router.get('/last-five', async (req, res, next) => {
+router.get('/:user_id/last-five', async (req, res, next) => {
+  const { user_id } = req.params;
   try {
-    const logs = await Log.find().sort({"date": -1}).limit(5);
+    const logs = await Log.find({"user_id": `${user_id}`}).sort({"date": -1}).limit(5);
     res.send(logs);
   } catch (error) {
     res.status(500).send({ get_error: 'Error while getting list of logs.' })

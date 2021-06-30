@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const log = new mongoose.Schema({
+  user_id: String,
   date: String,
   exercise: String,
   muscle: String,

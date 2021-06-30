@@ -16,7 +16,6 @@ const BtnStyle = styled.button`
   margin-bottom: 5%;
 `
 
-// function LastLog({ exerciseList, logs }) {
 function LastLog({ logs, getData }) {
   useEffect(() => {
     getData();

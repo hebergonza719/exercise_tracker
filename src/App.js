@@ -1,10 +1,10 @@
-// import React, { useState, useEffect } from "react";
 import React, { useEffect } from "react";
 import LogForm from "./components/LogForm";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import LastLog from "./components/LastLog";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import PrivateRoute from "./components/PrivateRoute";
 import "./fonts.css";
 import "./App.css";
 
@@ -13,25 +13,13 @@ import { connect } from "react-redux";
 import { getData } from "./actions";
 
 function App(props) {
-  // const [exerciseList, setExerciseList] = useState([]);
-  // const addNewExercise = exercise => {
-  //   const newExercise = {
-  //     date: exercise.date,
-  //     exercise: exercise.exercise,
-  //     muscle: exercise.muscle,
-  //     sets: exercise.sets,
-  //     reps: exercise.reps,
-  //     weight: exercise.weight,
-  //     notes: exercise.notes
-  //   };
-  //   const newExerciseList = [...exerciseList, newExercise];
-  //   setExerciseList(newExerciseList);
-  // };
 
   const { getData } = props;
 
   useEffect(() => {
-    getData();
+    if (localStorage.getItem("token")) {
+      getData();
+    }
   }, [getData])
 
   return (
@@ -51,19 +39,9 @@ function App(props) {
               return <Login {...routeProps} />;
             }}
           />
-          <Route
-            path="/lastlog"
-            render={routeProps => {
-              return <LastLog {...routeProps}/>;
-            }}
-          />
-          <Route
-            path="/new-log"
-            render={routeProps => {
-              // return <LogForm {...routeProps} addNewExercise={addNewExercise} />;
-              return <LogForm {...routeProps}/>;
-            }}
-          />
+          <PrivateRoute path="/lastlog" component={LastLog}/>
+          <PrivateRoute path="/new-log" component={LogForm}/>
+
         </Switch>
       </div>
     </BrowserRouter>
@@ -76,7 +54,6 @@ const mapStateToProps = state => {
   };
 };
 
-// export default App;
 export default connect (
   mapStateToProps,
   { getData }

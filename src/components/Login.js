@@ -2,9 +2,9 @@ import React from 'react';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 function Login({ values, errors, touched, status }) {
-
   return (
     <div>
       <Form>
@@ -33,6 +33,11 @@ function Login({ values, errors, touched, status }) {
           )}
         </label>
         <button type="submit">Login</button>
+        <div>
+          <h5>Create an account?</h5>
+          <NavLink to="/register">Register</NavLink>
+        </div>
+        
       </Form>
 
     </div>
@@ -54,13 +59,14 @@ const FormikLogin = withFormik({
 
   handleSubmit(values, {resetForm}) {
     axios
-      .post("http://localhost:4000/api/auth/login", 
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, 
         values,
         { withCredentials: true}
       )
       .then(res => {
         localStorage.setItem("token", res.data.jwt_token);
-        console.log("token has been set")
+        localStorage.setItem("user_id", res.data.user_id);
+        window.location.replace('/lastlog')
       })
       .catch(err => {
         localStorage.removeItem("token");

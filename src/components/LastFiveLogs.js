@@ -19,7 +19,7 @@ function LastFiveLogs({ exerciseList, getLastFive, lastFive }) {
 
   return (
     <div>
-      <TitleStyled>Your last five logs:</TitleStyled>
+      <TitleStyled>Your last five logs</TitleStyled>
       {lastFive.logs.slice(-5).map((exercise) =>
         <LogCard key={exercise._id} exercise = {exercise} /> 
       )}

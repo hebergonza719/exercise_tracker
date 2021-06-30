@@ -2,6 +2,7 @@ import React from 'react';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 function Register({ values, errors, touched, status }) {
 
@@ -33,6 +34,10 @@ function Register({ values, errors, touched, status }) {
           )}
         </label>
         <button type="submit">Register</button>
+        <div>
+          <h5>Already registered?</h5>
+          <NavLink to="/">Sign-in</NavLink>
+        </div>
       </Form>
 
     </div>

@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
       res.status(401).json({ message: 'Invalid Credentials' });
     } else if (user && bcrypt.compareSync(req.body.password, user.password)) {
       const token = generateToken(user);
-      res.status(200).json({ message: `Welcome ${user.username}!`, jwt_token: token});
+      res.status(200).json({ message: `Welcome ${user.username}!`, jwt_token: token, user_id: user._id });
     }
   });
 });

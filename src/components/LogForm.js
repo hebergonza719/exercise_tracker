@@ -1,9 +1,8 @@
-// import React, { useEffect } from "react";
 import React from "react";
 import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 
@@ -36,12 +35,7 @@ const ParaError = styled.p`
   color: red;
 `
 
-// const LogForm = ({ addNewExercise, values, errors, touched, status }) => {
 const LogForm = ({ values, errors, touched, status }) => {
-
-  // useEffect(() => {
-  //   status && addNewExercise(status);
-  //   }, [status, addNewExercise]);
 
   return (
     <div>
@@ -165,7 +159,6 @@ const LogForm = ({ values, errors, touched, status }) => {
         </FieldContainer>
 
         <ButtonContainer>
-          {/* SubButton = <button> */}
           <BtnStyle type="submit">Log Exercise</BtnStyle>
 
           <Link to="/lastlog">
@@ -194,18 +187,14 @@ const FormikLogForm = withFormik({
   validationSchema: Yup.object().shape({
     date: Yup.string().required("Select a date"),
     exercise: Yup.string().required("Enter exercise name"),
-    // targetMuscle: Yup.string().required("error"),
     sets: Yup.number().positive().integer().required("Enter number of sets"),
     reps: Yup.number().positive().integer().required("Enter number of reps")
-    // weightLifted: Yup.number().positive().integer().required("Enter lbs lifted"),
-    // notes: Yup.string().required("error")
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
-    // event.preventDefault();
-    axios
-      .post("http://localhost:4000/api/logs", values)
-      // .post("https://webpt7-weightliftingjournal.herokuapp.com/api/workouts/newworkout", values, {withCredentials: true})
+    const newValues = { ...values, user_id: localStorage.getItem('user_id') };
+    axiosWithAuth()
+      .post("http://localhost:4000/api/logs", newValues)
       .then(res => {
         // sends a status update through props in UserForm with value as response.data content
         // this comes from the formikBag
