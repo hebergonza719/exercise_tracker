@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
 
 import { connect } from "react-redux";
+import { getData } from "../actions";
 
 const BtnStyle = styled.button`
   background-color: #18181E;
@@ -16,8 +17,12 @@ const BtnStyle = styled.button`
 `
 
 // function LastLog({ exerciseList, logs }) {
-function LastLog({ logs }) {
-  if (logs.length === 0) {
+function LastLog({ logs, getData }) {
+  useEffect(() => {
+    getData();
+  }, [getData])
+
+  if (logs.logs.length === 0) {
     return (
       <div>
         <h3>You have no previous logs</h3>
@@ -31,7 +36,7 @@ function LastLog({ logs }) {
   else {
     return (
       <div>
-        <SearchForm exerciseList={logs} />
+        <SearchForm exerciseList={logs.logs} />
         
         <Link to="/new-log">
           <BtnStyle>Create a new log</BtnStyle>
@@ -49,5 +54,6 @@ const mapStateToProps = state => {
 };
 
 export default connect (
-  mapStateToProps
+  mapStateToProps,
+  { getData }
 )(LastLog);

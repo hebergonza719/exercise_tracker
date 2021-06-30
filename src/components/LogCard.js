@@ -15,8 +15,6 @@ const NotesContainer = styled.div`
   border: 1px solid;
   margin-bottom: 8%;
   padding: 8px;
-  margin-left: -2%;
-  margin-right: -2%;
 `
 const H3Styled = styled.h3`
   margin-top: 0;

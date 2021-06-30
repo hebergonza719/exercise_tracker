@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
@@ -35,11 +36,12 @@ const ParaError = styled.p`
   color: red;
 `
 
-const LogForm = ({ addNewExercise, values, errors, touched, status }) => {
+// const LogForm = ({ addNewExercise, values, errors, touched, status }) => {
+const LogForm = ({ values, errors, touched, status }) => {
 
-  useEffect(() => {
-    status && addNewExercise(status);
-    }, [status, addNewExercise]);
+  // useEffect(() => {
+  //   status && addNewExercise(status);
+  //   }, [status, addNewExercise]);
 
   return (
     <div>
@@ -166,7 +168,7 @@ const LogForm = ({ addNewExercise, values, errors, touched, status }) => {
           {/* SubButton = <button> */}
           <BtnStyle type="submit">Log Exercise</BtnStyle>
 
-          <Link exact to="/lastlog">
+          <Link to="/lastlog">
             <BtnStyle>Return</BtnStyle>
           </Link>
         </ButtonContainer>

@@ -5,9 +5,108 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Karma', serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:'Karma', serif;
+}
+
+.date-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.date-field {
+  margin-left: 2%;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #DEC79B;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 120%;
+}
+
+.form-styled {
+  display: flex;
+  flex-direction: column;
+  text-align: initial;
+  border: 1px solid lightgray;
+  border-radius: 4px; 
+  padding: 0% 5% 0% 5%;
+  margin: 5% 10% 5% 10%;
+}
+
+.input-styled {
+  margin: 2% 0 0 0;
+  width: 96%;
+  padding: 6px 2%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+.note-input {
+  margin: 2% 0 0 0;
+  width: 96%;
+  padding: 6px 2%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  height: 55px;
+  resize: none;
+}
+
+.h3-notes {
+  margin: 0;
+}
+
+.p-notes {
+  width: 101%;
+  margin-top: 0;
+}
+
+.h3-date {
+  text-align: end;
+  margin-top: 0;
+}
+
+.card-img {
+  width: 50%;
+}
+
+.img-container {
+  margin-top: 5%;
+}
+
+.floating-btn {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #18181E;
+  border-radius: 50%;
+  color: white;
+  font-size: 40px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25%);
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  color: #DEC79B;
+  transition: 0.25s;
+}
+
+.floating-btn:active {
+  background: black;
+}
+
+.date-label {
+  font-weight: bold;
+  font-family: 'Karma', serif;
+}
+
+.search-field {
+  margin-left: 6px;
 }

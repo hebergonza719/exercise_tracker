@@ -31,12 +31,13 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const results = exerciseList.filter(exercise => {
-      return exercise.date === status;
-    });
+    if (status) {
+      const results = exerciseList.filter(exercise => {
+        return exercise.date === status.date;
+      });
 
-    setSearchResults(results);
-
+      setSearchResults(results);
+    }
   }, [status, exerciseList]);
 
   const returnResults = () => {
@@ -44,7 +45,7 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
       return (
         <div>
           <ErrorPMessage>You don't have logs for that date</ErrorPMessage>
-          <LastFiveLogs exerciseList={exerciseList} />
+          <LastFiveLogs />
         </div>
       );
     }
@@ -52,7 +53,7 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
     else if (searchResults.length === 0) {
       return (
         <div>
-          <LastFiveLogs exerciseList={exerciseList} />
+          <LastFiveLogs/>
         </div>
       )
     }
@@ -60,7 +61,7 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
     else if (searchResults.length > 0) {
       return (
         searchResults.map(exercise => (
-          <LogCard exercise={exercise} />
+          <LogCard key={exercise._id} exercise={exercise} />
         ))
       )
     }
@@ -107,7 +108,6 @@ const FormikSearchForm  = withFormik({
 
   handleSubmit(values, { setStatus }) {
     setStatus(values);
-    // resetForm();
   }
 
 })(SearchForm);

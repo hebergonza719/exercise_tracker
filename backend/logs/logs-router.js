@@ -32,4 +32,13 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/last-five', async (req, res, next) => {
+  try {
+    const logs = await Log.find().sort({"date": -1}).limit(5);
+    res.send(logs);
+  } catch (error) {
+    res.status(500).send({ get_error: 'Error while getting list of logs.' })
+  }
+});
+
 module.exports = router;
