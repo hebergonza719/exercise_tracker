@@ -8,14 +8,15 @@ import { getLastFive } from "../actions";
 const TitleStyled = styled.h3`
   background-color: #18181E;
   color: #DEC79B;
-  margin-left: 10%;
-  margin-right: 10%;
+  height: 2.5rem;
+  line-height: normal;
+  border-radius: 5px;
 `
 
-function LastFiveLogs({ exerciseList, getLastFive, lastFive }) {
+function LastFiveLogs({ getLastFive, lastFive, logs }) {
   useEffect(() => {
     getLastFive();
-  }, [getLastFive])
+  }, [getLastFive, logs])
 
   return (
     <div>

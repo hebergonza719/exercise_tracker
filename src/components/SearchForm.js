@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import LogCard from "./LogCard";
+// import LogCard from "./LogCard";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import LastFiveLogs from './LastFiveLogs';
+import DisplaySearch from "./DisplaySearch";
 
 const BtnStyle = styled.button`
   background-color: #18181E;
@@ -60,9 +61,9 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
 
     else if (searchResults.length > 0) {
       return (
-        searchResults.map(exercise => (
-          <LogCard key={exercise._id} exercise={exercise} />
-        ))
+        <div>
+          <DisplaySearch searchResults={searchResults}/>
+        </div>
       )
     }
   }
@@ -70,7 +71,7 @@ const SearchForm = ({ exerciseList, values, errors, touched, status }) => {
   return (
     <section className="search-form">
       {/* <form> */}
-      <Form>
+      <Form className="search-form-date">
         {touched.date && errors.date && (
           // errors.name comes from Yup
           <ParaError>{errors.date}</ParaError>

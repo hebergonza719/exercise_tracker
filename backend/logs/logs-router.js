@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const Log = require('../database/log');
 
 router.post('/', async (req, res, next) => {
@@ -40,6 +38,20 @@ router.get('/:user_id/last-five', async (req, res, next) => {
     res.send(logs);
   } catch (error) {
     res.status(500).send({ get_error: 'Error while getting list of logs.' })
+  }
+});
+
+router.delete('/:log_id', async (req, res, next) => {
+  try {
+    await Log.deleteOne({ _id: req.params.log_id }, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+      }
+    });
+  } catch (error) {
+    res.status(500).send({ get_error: 'Error while deleting log.' })
   }
 });
 

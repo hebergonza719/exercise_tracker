@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
+import Navbar from './Navbar';
 
 import { connect } from "react-redux";
 import { getData } from "../actions";
@@ -13,7 +14,12 @@ const BtnStyle = styled.button`
   height: 40px;
   border-color: #18181E;
   border-radius: 5px;
-  margin-bottom: 5%;
+  margin: 1.5rem 0;
+`
+
+const H3Styled = styled.h3`
+  margin-top: 1rem;
+  margin-bottom: 0;
 `
 
 function LastLog({ logs, getData }) {
@@ -24,7 +30,8 @@ function LastLog({ logs, getData }) {
   if (logs.logs.length === 0) {
     return (
       <div>
-        <h3>You have no previous logs</h3>
+        <Navbar />
+        <H3Styled>You have no previous logs</H3Styled>
         <Link to="/new-log">
           <BtnStyle>Create a new log</BtnStyle>
         </Link>
@@ -35,6 +42,7 @@ function LastLog({ logs, getData }) {
   else {
     return (
       <div>
+        <Navbar />
         <SearchForm exerciseList={logs.logs} />
         
         <Link to="/new-log">

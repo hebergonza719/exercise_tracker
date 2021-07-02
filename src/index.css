@@ -36,7 +36,7 @@ code {
   border: 1px solid lightgray;
   border-radius: 4px; 
   padding: 0% 5% 0% 5%;
-  margin: 5% 10% 5% 10%;
+  margin: 2% 10% 5% 10%;
 }
 
 .input-styled {
@@ -73,10 +73,11 @@ code {
 
 .card-img {
   width: 50%;
+  border: solid 1px #c4c4c4;
 }
 
 .img-container {
-  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .floating-btn {
@@ -109,4 +110,61 @@ code {
 
 .search-field {
   margin-left: 6px;
+}
+
+.username-field {
+  width: 396px;
+  height: 56px;
+  padding: 18.5px 14px;
+  margin: 16px 0 8px 0;
+  border: solid 1px #c4c4c4;
+  border-radius: 5px;
+}
+
+.password-field {
+  width: 396px;
+  height: 56px;
+  padding: 18.5px 14px;
+  margin: 16px 0 8px 0;
+  border: solid 1px #c4c4c4;
+  border-radius: 5px;
+}
+
+.login-submit-btn {
+  margin: 24px 0 16px 0;
+}
+
+.login-logo {
+  border: solid 1px #c4c4c4;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+.navbar {
+  background-color: #18181E;
+  border-radius: 5px;
+}
+
+.search-form-date {
+  margin: 1.5rem 0;
+}
+
+.accordion-sum-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h3-date-sum {
+  margin: 0;
+  line-height: inherit;
+}
+
+.accordion-container {
+  margin-top: 1rem;
+}
+
+.card-accord-details {
+  text-align: initial;
 }

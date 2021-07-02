@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
+import Navbar from './Navbar';
 
 
 const LabelStyle = styled.label`
@@ -35,12 +36,17 @@ const ParaError = styled.p`
   color: red;
 `
 
+const TitleH3 = styled.h3`
+  margin-top: 2rem;
+`
+
 const LogForm = ({ values, errors, touched, status }) => {
 
   return (
     <div>
+      <Navbar />
       <Form className="form-styled">
-        <h3>Add New Exercise</h3>
+        <TitleH3>Add New Exercise</TitleH3>
 
         <div className="date-container">
           <label htmlFor="date">Date:
@@ -159,7 +165,7 @@ const LogForm = ({ values, errors, touched, status }) => {
         </FieldContainer>
 
         <ButtonContainer>
-          <BtnStyle type="submit">Log Exercise</BtnStyle>
+          <BtnStyle type="submit">Log</BtnStyle>
 
           <Link to="/lastlog">
             <BtnStyle>Return</BtnStyle>
